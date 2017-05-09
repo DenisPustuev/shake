@@ -43,10 +43,6 @@
         this.lastY = null;
         this.lastZ = null;
 
-        this.dX = 0;
-        this.dY = 0;
-        this.dZ = 0;
-
         //create custom event
         if (typeof document.CustomEvent === 'function') {
             this.event = new document.CustomEvent('shake', {
@@ -67,10 +63,6 @@
         this.lastX = null;
         this.lastY = null;
         this.lastZ = null;
-
-        this.dX = 0;
-        this.dY = 0;
-        this.dZ = 0;
     };
 
     //start listening for devicemotion
@@ -108,10 +100,6 @@
         deltaX = Math.abs(this.lastX - current.x);
         deltaY = Math.abs(this.lastY - current.y);
         deltaZ = Math.abs(this.lastZ - current.z);
-
-        this.dX = deltaX;
-        this.dY = deltaY;
-        this.dZ = deltaZ;
 
         if (((deltaX > this.options.threshold) && (deltaY > this.options.threshold)) || ((deltaX > this.options.threshold) && (deltaZ > this.options.threshold)) || ((deltaY > this.options.threshold) && (deltaZ > this.options.threshold))) {
             //calculate time in milliseconds since last shake registered
