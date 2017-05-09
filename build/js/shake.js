@@ -125,13 +125,5 @@
         }
     };
 
-    Shake.prototype.getThreshold = function () {
-      return {
-          x: this.lastX,
-          y: this.lastY,
-          z: this.lastZ,
-      }
-    };
-
     return Shake;
 }));
