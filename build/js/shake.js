@@ -43,9 +43,9 @@
         this.lastY = null;
         this.lastZ = null;
 
-        this.deltaX = 0;
-        this.deltaY = 0;
-        this.deltaZ = 0;
+        this.dX = 0;
+        this.dY = 0;
+        this.dZ = 0;
 
         //create custom event
         if (typeof document.CustomEvent === 'function') {
@@ -68,9 +68,9 @@
         this.lastY = null;
         this.lastZ = null;
 
-        this.deltaX = 0;
-        this.deltaY = 0;
-        this.deltaZ = 0;
+        this.dX = 0;
+        this.dY = 0;
+        this.dZ = 0;
     };
 
     //start listening for devicemotion
@@ -94,9 +94,9 @@
         var current = e.accelerationIncludingGravity;
         var currentTime;
         var timeDifference;
-       /* var deltaX = 0;
+        var deltaX = 0;
         var deltaY = 0;
-        var deltaZ = 0;*/
+        var deltaZ = 0;
 
         if ((this.lastX === null) && (this.lastY === null) && (this.lastZ === null)) {
             this.lastX = current.x;
@@ -105,11 +105,15 @@
             return;
         }
 
-        this.deltaX = Math.abs(this.lastX - current.x);
-        this.deltaY = Math.abs(this.lastY - current.y);
-        this.deltaZ = Math.abs(this.lastZ - current.z);
+        deltaX = Math.abs(this.lastX - current.x);
+        deltaY = Math.abs(this.lastY - current.y);
+        deltaZ = Math.abs(this.lastZ - current.z);
 
-        if (((this.deltaX > this.options.threshold) && (this.deltaY > this.options.threshold)) || ((this.deltaX > this.options.threshold) && (this.deltaZ > this.options.threshold)) || ((this.deltaY > this.options.threshold) && (this.deltaZ > this.options.threshold))) {
+        this.dX = deltaX;
+        this.dY = deltaY;
+        this.dZ = deltaZ;
+
+        if (((deltaX > this.options.threshold) && (deltaY > this.options.threshold)) || ((deltaX > this.options.threshold) && (deltaZ > this.options.threshold)) || ((deltaY > this.options.threshold) && (deltaZ > this.options.threshold))) {
             //calculate time in milliseconds since last shake registered
             currentTime = new Date();
             timeDifference = currentTime.getTime() - this.lastTime.getTime();
